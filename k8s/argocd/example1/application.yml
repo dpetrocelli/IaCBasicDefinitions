@@ -15,9 +15,6 @@ spec:
     server: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
-    syncOptions:
-      - ApplyOutOfSyncOnly=true
-    automated:
-      automated: true # 
-      prune: false # 
-      selfHeal: false #
+    always:
+      frequency: 1m
+      retry: false
