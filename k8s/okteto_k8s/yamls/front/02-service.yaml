@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sipfront-lb
+  namespace: dpetrocelli
+spec:
+  type: LoadBalancer
+  selector:
+    app: sipfront
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80

@@ -1,0 +1,21 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgcli-deployment
+  namespace: dpetrocelli
+spec:
+  selector:
+    matchLabels:
+      app: pgcli
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: pgcli
+    spec:
+      containers:
+      - name: pgcli
+        image: kubetools/pgcli:latest
+        imagePullPolicy: Always
+        

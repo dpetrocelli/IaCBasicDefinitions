@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
+kind: Deployment
+metadata:
+  name: sipback-deployment
+  namespace: dpetrocelli
+spec:
+  selector:
+    matchLabels:
+      app: sipback
+  replicas: 1 # Actualiza el número de réplicas de 2 a 4
+  template:
+    metadata:
+      labels:
+        app: sipback
+    spec:
+      containers:
+      - name: sipback
+        image: dpetrocelli/sipback:latest
+        ports:
+        - containerPort: 8080
+

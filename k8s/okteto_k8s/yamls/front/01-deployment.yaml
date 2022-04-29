@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
+kind: Deployment
+metadata:
+  name: sipfront-deployment
+  namespace: dpetrocelli
+spec:
+  selector:
+    matchLabels:
+      app: sipfront
+  replicas: 1000 # Actualiza el número de réplicas de 2 a 4
+  template:
+    metadata:
+      labels:
+        app: sipfront
+    spec:
+      containers:
+      - name: sipfront
+        image: dpetrocelli/sipfront:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+

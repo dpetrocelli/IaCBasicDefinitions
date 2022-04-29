@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  labels:
+    run: alpine
+  name: alpine
+  namespace: dpetrocelli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: alpine
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        run: alpine
+    spec:
+      containers:
+      - image: alpine:latest
+        command:
+          - /bin/sh
+          - "-c"
+          - "sleep 60m"
+        imagePullPolicy: Always
+        name: alpine
