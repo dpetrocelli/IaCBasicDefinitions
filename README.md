@@ -24,6 +24,7 @@ eval $(ssh-agent -s)
 * Create ssh key with the following command
 ```bash
 ssh-keygen -f ~/.ssh/id_rsa -t rsa -N '' -C "david.petrocelli@cloudhesive.com"
+ssh-keygen -f ~/.ssh/id_rsa -t ecdsa -N '' -C "dpetrocelli@gmail.com"
 ```
 
 * add to .gitignore file (avoid pushing this private key to the repo)
