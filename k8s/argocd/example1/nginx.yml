@@ -2,19 +2,20 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nginx-deployment
-
+  namespace: apps
 spec:
   project: default
+  destination:
+    server: 'https://3ACD1CA30EE4AAD3B560F969E0ED505A.gr7.us-east-1.eks.amazonaws.com'
+    namespace: default
   source:
     repoURL: 'git@github.com:dpetrocelli/IaCBasicDefinitions.git'
-    targetRevision: HEAD
+    targetRevision: main
     path: k8s/yamls
     directory: 
       recurse: true
       jsonnet: {}
-  destination:
-    server: 'https://3ACD1CA30EE4AAD3B560F969E0ED505A.gr7.us-east-1.eks.amazonaws.com'
-    namespace: argocd
+  
    # Sync policy
   syncPolicy:
     automated: # automated sync by default retries failed attempts 5 times with following delays between attempts ( 5s, 10s, 20s, 40s, 80s ); retry controlled using `retry` field.
@@ -30,11 +31,11 @@ spec:
     - Replace=true
     - ApplyOutOfSyncOnly=true
     # The retry feature is available since v1.7
-    retry:
-      limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0
-      backoff:
-        duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
-        factor: 2 # a factor to multiply the base duration after each failed retry
-        maxDuration: 3m # the maximum amount of time allowed for the backoff strategy
+    # retry:
+    #   limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0
+    #   backoff:
+    #     duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+    #     factor: 2 # a factor to multiply the base duration after each failed retry
+    #     maxDuration: 3m # the maximum amount of time allowed for the backoff strategy
 
 
