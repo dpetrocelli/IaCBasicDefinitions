@@ -46,7 +46,6 @@ jobs:
           cd spring-boot-hello-world2 
           mvn spotbugs:check -Ddetail=true 2>/dev/null 1>spotbugs.txt
           ls -l
-          clear
           cat spotbugs.txt
           
       
