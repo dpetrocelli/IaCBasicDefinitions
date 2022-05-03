@@ -11,6 +11,7 @@ try:
     with open(os.getcwd()+"/scripts/spotbugs.txt") as f:
         lines = f.readlines()
     lines = ''.join(lines)
+    print(lines)
     try: 
         sb = ScriptBuilder()
         # SPOT -> BUGINSTANCE
@@ -23,9 +24,11 @@ try:
         # -> String pattern (ALWAYS WITH '' single quotes)
         regex = "'{}'.split('{}')[1].strip()".format(grep,checkr)
         result= sb.check_result(regex)
+        print(result)
         
         sb.printer("0", checkr, result)
     except Exception as err: 
+        print("asdfasdfasfas")
         print (err)
         exit (1) 
 
@@ -37,6 +40,7 @@ try:
         result= sb.check_result(regex)
         sb.printer("0",checkr,result)
     except Exception as err: 
+        print("asdfasdfasfas2")
         print (err)
         exit (1) 
 
