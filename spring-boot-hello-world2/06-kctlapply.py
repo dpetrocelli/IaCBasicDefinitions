@@ -10,45 +10,40 @@ from ScriptBuilder import ScriptBuilder
 sb = ScriptBuilder()
 
 # --------------------------------------------------------
-# STAGE 5 - Build Docker image ()
+# STAGE 6 - Deploy in K8s ()
 # --------------------------------------------------------
 directory = os.getcwd()
-binary = shutil.which("docker")
-command = "build . -t dpetrocelli/prueba"
-dockerBuild = "cd {} ; {} {}".format(directory, binary, command)
-dockerResult=sb.runner(dockerBuild)
+binary = shutil.which("kubectl")
+namespace = "dpetrocelli"
+user=os.getlogin()
+kubeconfig = "'/home/{}/.kube/config'".format(user)
 
-#Ask for Failures:
+deployment="deployment.yaml"
+command = "--kubeconfig={} apply -f {} -n {}".format(kubeconfig,deployment,namespace) 
+kctl = "cd {} ; {} {}".format(directory,binary, command)
+
+kctlRunner=sb.runner(kctl)
+
 try:
-    checkr="Successfully built"
-    grep=sb.grep(dockerResult[1].splitlines(),checkr, True)
+    checkr="deployment"
+    grep=sb.grep(kctlRunner[1].splitlines(),checkr, True)
+    print (grep)
     
-    regex = "'{}'.split(' ')[0].strip()".format(grep)
-    result = sb.check_result(regex)
+except:
+    pass
     
-    sb.printer("Successfully", "build docker image", result)
-except Exception as err: 
-    print (err)
-    exit (1)
 
-# Docker login in line 
-command = "login --user dpetrocelli --password Osito1104** ; docker push dpetrocelli/prueba:latest"
-dockerPush = "cd {} ; {} {}".format(directory, binary, command)
-pushResult=sb.runner(dockerPush)
+service="service.yaml"
+command = "--kubeconfig={} apply -f {} -n {}".format(kubeconfig,deployment,namespace) 
+kctl = "cd {} ; {} {}".format(directory,binary, command)
 
-#Ask for Failures:
+kctlRunner=sb.runner(kctl)
+
 try:
-    checkr="digest: "
-    grep=sb.grep(pushResult[1].splitlines(),checkr, True)
+    checkr="deployment"
+    grep=sb.grep(kctlRunner[1].splitlines(),checkr, True)
+    print (grep)
     
-    regex = "'{}'.split(':')[3].strip()".format(grep)
-    result = sb.check_result(regex)
-    print (result)
-    #sb.printer("Successfully", "build docker image", result)
-except Exception as err: 
-    print (err)
-    exit (1)
-
-
-
+except:
+    pass
 

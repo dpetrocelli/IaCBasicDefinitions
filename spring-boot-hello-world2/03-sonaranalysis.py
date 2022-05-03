@@ -2,7 +2,7 @@ import sys
 import os
 import shutil
 import time
-from SonarClass import SonarqubeAnalyzer as sa
+
 from ScriptBuilder import ScriptBuilder
 
 # COMANDO PARA INICIALIZAR EL SCANNEO DE SONARQUBE.
@@ -17,16 +17,10 @@ sources = "src/main"
 
 directory = os.getcwd()
 binary = shutil.which("mvn")
-# command = "compile -Dmaven.test.skip=true {}:{} -Dsonar.host.url={}".format(
-#     sonarUser, 
-#     sonarPwd, 
-#     hostUrl
-# )
-
 sb = ScriptBuilder()
 command = "sonar:sonar -Dsonar.projectKey={} -Dsonar.sources={} -Dsonar.host.url={} -Dsonar.login={} -Dsonar.password={}".format(projectKey, sources, sonarHost, sonarUser, sonarPwd)
 sonarRunner = "cd {} ; {} {}".format(directory, binary, command)
-#print (sonarRunner)
+
 try:
     sonar=sb.runner(sonarRunner)
     # get task id 
@@ -43,8 +37,8 @@ try:
         analysisId=None
         
         # Wait until SQ has finished the analysis (based on analysisID)
-        loop=0
-        while (loop<5):
+        
+        for loop in range (5):
             response = sb.curl(sonarAnalysisId, sonarUser, sonarPwd).json()
             
             if (response["task"]["status"] == "SUCCESS"):
@@ -52,7 +46,7 @@ try:
                 break
             else:
                 time.sleep(5)
-            loop+=1
+            
         # Once success, GET QG Result
         qg="{}/api/qualitygates/project_status?analysisId={}".format(sonarHost,analysisId)
         response = sb.curl(qg, sonarUser, sonarPwd).json()

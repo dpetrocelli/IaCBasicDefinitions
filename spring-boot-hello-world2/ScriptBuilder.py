@@ -43,6 +43,7 @@ class ScriptBuilder:
             print(e)
         return response
     
+    
     def check_result (self, regex):
         # If run status Ok (exit code 0)
                 return (eval(regex))
