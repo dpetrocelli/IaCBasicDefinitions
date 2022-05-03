@@ -30,25 +30,28 @@ jobs:
           distribution: 'adopt' 
           java-version: '11'
           
-      - name: Checkout code from repo
+      - id: checkout  
+        name: Checkout code from repo
         uses: actions/checkout@v3
       
-      - name: Install python requirements
-        run: |
-          cd $GITHUB_WORKSPACE
-          pip3 install -r requirements.txt
+      # - id: install_python_requirements
+      #   name: Install python requirements
+      #   run: |
+      #     cd $GITHUB_WORKSPACE
+      #     pip3 install -r requirements.txt
           
 # pip install --verbose --requirement requirements.txt
           
       
-      - id: get_bash
+      - id: mvn_spotbugs
         name: mvn spotbugs (bash content)
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> scripts/spotbugs.txt
-          python3 scripts/01-string-spotbugs.py $result
+          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> spotbugs.txt
+          #python3 scripts/01-string-spotbugs.py $result
+          cat spotbugs.txt
           
           
       
