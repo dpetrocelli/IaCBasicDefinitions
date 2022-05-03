@@ -49,7 +49,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> spotbugs.txt
+          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> nicoculpable.txt
           #python3 scripts/01-string-spotbugs.py $result
           ls -la .
           #cat spotbugs.txt
