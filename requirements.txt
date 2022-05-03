@@ -1,4 +1,3 @@
-shutil
 unicodedata
 re
 platform
