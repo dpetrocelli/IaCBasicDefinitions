@@ -40,7 +40,7 @@ jobs:
       - name: mvn spotbugs
         run: |
           cd $GITHUB_WORKSPACE
-          cd spring-boot-hello-world2
+          cd spring-boot-hello-world2/scripts
           python3 01-spotbugs.py
 
   #     # [STEP 2] - Build & Store Docker image
