@@ -43,10 +43,10 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          result=$(mvn spotbugs:check -Ddetail=true)
-          echo "-------- HAPPI -----------"
+          result=echo "::set-output name=coverage::$(mvn spotbugs:check -Ddetail=true)"
+          echo "-------- HAPPIINIT -----------"
           echo "::set-output name=status::$result"
-          echo "-------- HAPPI -----------"
+          echo "-------- HAPPIEND -----------"
 
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
