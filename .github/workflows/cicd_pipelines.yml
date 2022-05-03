@@ -33,7 +33,9 @@ jobs:
       # [STEP 2] - Check filesystem structure and get it the correct path
       - name: Check filesystem structure
         run: ls -la
-        
+      
+      - name: mvn spotbugs
+        run: cd spring-boot-hello-world2; python3 01-spotbugs.py
 
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
