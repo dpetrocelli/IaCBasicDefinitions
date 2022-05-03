@@ -1,6 +1,6 @@
-psutil
-requests
-colorama
+psutil==5.9.0
+requests==2.27.1
+colorama==0.4.4
 # # unicodedata
 # re
 # platform
