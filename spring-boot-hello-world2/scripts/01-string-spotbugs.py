@@ -8,6 +8,7 @@ from ScriptBuilder import ScriptBuilder
 # [STEP 1] - Instantiate the builder class
 try:
     string = sys.argv[1]
+    print ("LASTRINGEEEEEEEE: "+string)
     try: 
         sb = ScriptBuilder()
         # SPOT -> BUGINSTANCE
