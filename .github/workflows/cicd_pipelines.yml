@@ -44,6 +44,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
           result=$(mvn spotbugs:check -Ddetail=true 2>/dev/null)
+          cd scripts
           python3 01-string-spotbugs.py $result
 
   #     # [STEP 2] - Build & Store Docker image
