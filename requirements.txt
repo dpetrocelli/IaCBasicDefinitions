@@ -1,7 +1,6 @@
 psutil
 requests
 colorama
-re
 # # unicodedata
 # re
 # platform
