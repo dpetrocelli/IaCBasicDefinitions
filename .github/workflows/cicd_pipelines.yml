@@ -11,7 +11,7 @@ name: cicd_pipeline
 
 jobs:
 
-  build_front:
+  build_and_deploy_backend:
     name: Build Backend APP and publish to Docker Registry
     runs-on: ubuntu-latest
 
@@ -114,29 +114,29 @@ jobs:
   #         args: apply -f k8s/okteto_k8s/yamls/front/02-service.yaml
 
 
-  deploy_back_to_k8s:
-    # needs: [build_back]
-    name: Deploy backend to k8s
-    runs-on: ubuntu-latest
+  # deploy_back_to_k8s:
+  #   # needs: [build_back]
+  #   name: Deploy backend to k8s
+  #   runs-on: ubuntu-latest
 
-    steps:
+  #   steps:
 
-      # [STEP 1] - Checkout Code
-      - name: Checkout code from repo
-        uses: actions/checkout@v2
+  #     # [STEP 1] - Checkout Code
+  #     - name: Checkout code from repo
+  #       uses: actions/checkout@v2
 
-      # [STEP 2] - Deploy Pods
-      - name: Deploy Pods (containers)
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f k8s/okteto_k8s/yamls/back/01-deployment.yaml 
+  #     # [STEP 2] - Deploy Pods
+  #     - name: Deploy Pods (containers)
+  #       uses: actions-hub/kubectl@master
+  #       env:
+  #         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+  #       with:
+  #         args: apply -f k8s/okteto_k8s/yamls/back/01-deployment.yaml 
 
-      # [STEP 3] - Deploy Service (Load Balancer)
-      - name: Deploy services (LB)
-        uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f k8s/okteto_k8s/yamls/back/02-service.yaml
+  #     # [STEP 3] - Deploy Service (Load Balancer)
+  #     - name: Deploy services (LB)
+  #       uses: actions-hub/kubectl@master
+  #       env:
+  #         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+  #       with:
+  #         args: apply -f k8s/okteto_k8s/yamls/back/02-service.yaml
