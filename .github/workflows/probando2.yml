@@ -52,9 +52,9 @@ jobs:
           mvn spotbugs:check -Ddetail=true 2>/dev/null 1> nico.txt
           cat nico.txt | grep "Error" 1> nicoculpable.txt 
           ls -la .
-          sleep (5)
+          
           cat nicoculpable.txt
-          sleep (15)
+          
           python3 scripts/nicoculpa.py
           
           
