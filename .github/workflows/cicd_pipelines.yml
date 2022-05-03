@@ -51,6 +51,9 @@ jobs:
       - name: mvn spotbgugs analyzer
         shell: bash
         run: |
+            cd $GITHUB_WORKSPACE
+            cd spring-boot-hello-world2 
+            cd scripts/
             python3 scripts/01-string-spotbugs.py ${{ steps.get_bash.outputs.my_value }}
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
