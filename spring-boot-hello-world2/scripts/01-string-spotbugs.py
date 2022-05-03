@@ -18,8 +18,9 @@ try:
         print ("chaufi")
         # SPOT -> BUGINSTANCE
         checkr="BugInstance size is"
+        print ("antesgrep")
         grep=sb.grep(lines.splitlines(),checkr, True)
-
+        print ("despuesgrep")
         # REGEX 
         # -> convert to int
         # -> String to be analyzed (grep result)
