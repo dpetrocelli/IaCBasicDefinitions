@@ -24,11 +24,11 @@ jobs:
           architecture: 'x64' 
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' 
+          distribution: 'adopt' 
           java-version: '11'
-          cache: maven
+          
       - name: Checkout code from repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       # [STEP 2] - Check filesystem structure and get it the correct path
       - name: Check filesystem structure
