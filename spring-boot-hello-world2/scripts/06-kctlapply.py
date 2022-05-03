@@ -20,7 +20,7 @@ kubeconfig = "'/home/{}/.kube/config'".format(user)
 
 deployment="deployment.yaml"
 command = "--kubeconfig={} apply -f {} -n {}".format(kubeconfig,deployment,namespace) 
-kctl = "cd {} ; {} {}".format(directory,binary, command)
+kctl = "cd {} ; cd .. ; {} {}".format(directory,binary, command)
 
 kctlRunner=sb.runner(kctl)
 

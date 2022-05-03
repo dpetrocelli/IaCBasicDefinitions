@@ -15,7 +15,7 @@ sb = ScriptBuilder()
 directory = os.getcwd()
 binary = shutil.which("mvn")
 command = "test"
-mvnTest = "cd {} ; {} {}".format(directory, binary, command)
+mvnTest = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 testResult=sb.runner(mvnTest)
 
 #Ask for Failures:

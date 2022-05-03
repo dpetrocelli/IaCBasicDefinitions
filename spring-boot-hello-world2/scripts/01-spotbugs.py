@@ -17,7 +17,7 @@ sb = ScriptBuilder()
 directory = os.getcwd()
 binary = shutil.which("mvn")
 command = "spotbugs:check -Ddetail=true"
-spotbugs = "cd {} ; {} {}".format(directory, binary, command)
+spotbugs = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 sbResult=sb.runner(spotbugs)
 
 # Result -> 0 -> exit status

@@ -15,7 +15,7 @@ sb = ScriptBuilder()
 directory = os.getcwd()
 binary = shutil.which("mvn")
 command = "clean package -DskipTests"
-mvnBuild = "cd {} ; {} {}".format(directory, binary, command)
+mvnBuild = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 buildResult=sb.runner(mvnBuild)
 
 #Ask for Failures:

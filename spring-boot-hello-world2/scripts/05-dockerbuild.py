@@ -33,7 +33,7 @@ except Exception as err:
 
 # Docker login in line 
 command = "login --user dpetrocelli --password Osito1104** ; docker push dpetrocelli/prueba:latest"
-dockerPush = "cd {} ; {} {}".format(directory, binary, command)
+dockerPush = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 pushResult=sb.runner(dockerPush)
 
 #Ask for Failures:

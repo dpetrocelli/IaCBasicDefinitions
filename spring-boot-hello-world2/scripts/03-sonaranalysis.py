@@ -19,7 +19,7 @@ directory = os.getcwd()
 binary = shutil.which("mvn")
 sb = ScriptBuilder()
 command = "sonar:sonar -Dsonar.projectKey={} -Dsonar.sources={} -Dsonar.host.url={} -Dsonar.login={} -Dsonar.password={}".format(projectKey, sources, sonarHost, sonarUser, sonarPwd)
-sonarRunner = "cd {} ; {} {}".format(directory, binary, command)
+sonarRunner = "cd {} ; cd ..; {} {}".format(directory, binary, command)
 
 try:
     sonar=sb.runner(sonarRunner)
