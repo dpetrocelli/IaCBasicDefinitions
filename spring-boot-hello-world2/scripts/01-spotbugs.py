@@ -30,31 +30,33 @@ sbResult=sb.runner(["/usr/bin/mvn", "-f", "{}/../pom.xml".format(directory), "sp
 
 # # Now it's time to iterate asking for text Results
 
+print (sbResult[0])
+print (sbResult[1])
+print (sbResult[2])
+# try: 
+#     # SPOT -> BUGINSTANCE
+#     checkr="BugInstance size is"
+#     grep=sb.grep(sbResult[1].splitlines(),checkr, True)
 
-try: 
-    # SPOT -> BUGINSTANCE
-    checkr="BugInstance size is"
-    grep=sb.grep(sbResult[1].splitlines(),checkr, True)
-
-    # REGEX 
-    # -> convert to int
-    # -> String to be analyzed (grep result)
-    # -> String pattern (ALWAYS WITH '' single quotes)
-    regex = "'{}'.split('{}')[1].strip()".format(grep,checkr)
-    result= sb.check_result(regex)
+#     # REGEX 
+#     # -> convert to int
+#     # -> String to be analyzed (grep result)
+#     # -> String pattern (ALWAYS WITH '' single quotes)
+#     regex = "'{}'.split('{}')[1].strip()".format(grep,checkr)
+#     result= sb.check_result(regex)
     
-    sb.printer("0", checkr, result)
-except Exception as err: 
-    print (err)
-    exit (1) 
+#     sb.printer("0", checkr, result)
+# except Exception as err: 
+#     print (err)
+#     exit (1) 
 
-try:  
-    # SPOT -> ErrorSizeIS
-    checkr="Error size is"
-    grep=sb.grep(sbResult[1].splitlines(),checkr, True)
-    regex = "'{}'.split('{}')[1].strip()".format(grep, checkr)
-    result= sb.check_result(regex)
-    sb.printer("0",checkr,result)
-except Exception as err: 
-    print (err)
-    exit (1) 
+# try:  
+#     # SPOT -> ErrorSizeIS
+#     checkr="Error size is"
+#     grep=sb.grep(sbResult[1].splitlines(),checkr, True)
+#     regex = "'{}'.split('{}')[1].strip()".format(grep, checkr)
+#     result= sb.check_result(regex)
+#     sb.printer("0",checkr,result)
+# except Exception as err: 
+#     print (err)
+#     exit (1) 
