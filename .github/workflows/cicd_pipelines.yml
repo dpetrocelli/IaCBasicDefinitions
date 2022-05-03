@@ -38,16 +38,20 @@ jobs:
 # pip install --verbose --requirement requirements.txt
           
       
-      - name: mvn spotbugs
+      - id: get_bash
+        name: mvn spotbugs (bash content)
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
           result=$(mvn spotbugs:check -Ddetail=true)
           echo "-------- HAPPIINIT -----------"
-          python3 scripts/01-string-spotbugs.py echo "::set-output name=my_value::$result"
+          echo "::set-output name=my_value::$result"
           echo "-------- HAPPIEND -----------"
-
+      - name: mvn spotbgugs analyzer
+        shell: bash
+        run: |
+            python3 scripts/01-string-spotbugs.py ${{ steps.get_bash.outputs.my_value }}
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
   #       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
