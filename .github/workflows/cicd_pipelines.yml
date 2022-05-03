@@ -39,7 +39,7 @@ jobs:
           
       
       - name: mvn spotbugs
-        
+        shell: python
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
