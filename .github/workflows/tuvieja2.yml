@@ -47,11 +47,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> scripts/temp.txt
-          result=$COMANDENV
-          ls -l scripts/
-          echo $result
-#python3 scripts/01-string-spotbugs.py $result
+          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> scripts/spotbugs.txt
+          python3 scripts/01-string-spotbugs.py $result
           
           
       
