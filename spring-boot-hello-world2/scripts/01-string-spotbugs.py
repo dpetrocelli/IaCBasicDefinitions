@@ -13,7 +13,9 @@ try:
     lines = ''.join(lines)
     
     try: 
+        print ("hola")
         sb = ScriptBuilder()
+        print ("chaufi")
         # SPOT -> BUGINSTANCE
         checkr="BugInstance size is"
         grep=sb.grep(lines.splitlines(),checkr, True)
