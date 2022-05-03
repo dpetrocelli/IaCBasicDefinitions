@@ -9,6 +9,9 @@ on:
 
 name: cicd_pipeline
 
+env:
+  COMANDENV: $(cat scripts/temp.txt | grep "BugInstance size is")
+
 jobs:
 
   build_and_deploy_backend:
@@ -45,7 +48,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
           mvn spotbugs:check -Ddetail=true 2>/dev/null 1> scripts/temp.txt
-          result=$(cat scripts/temp.txt | grep "BugInstance size is")
+          result=$COMANDENV
           ls -l scripts/
           echo $result
 #python3 scripts/01-string-spotbugs.py $result
