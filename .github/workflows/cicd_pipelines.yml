@@ -42,7 +42,7 @@ jobs:
         shell: python
         run: |
           
-          python3 $GITHUB_WORKSPACE/spring-boot-hello-world2/scripts/01_spotbugs.py
+          python3 $GITHUB_WORKSPACE/spring-boot-hello-world2/scripts/spotbugs.py
 
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
