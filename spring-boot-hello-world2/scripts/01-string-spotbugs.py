@@ -26,8 +26,10 @@ try:
         # -> String to be analyzed (grep result)
         # -> String pattern (ALWAYS WITH '' single quotes)
         regex = "'{}'.split('{}')[1].strip()".format(grep,checkr)
+        print (regex)
+        print ("debugpapa")
         result= sb.check_result(regex)
-        
+        print ("debugmama")
         
         sb.printer("0", checkr, result)
     except Exception as err: 
