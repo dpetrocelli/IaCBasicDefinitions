@@ -1,7 +1,7 @@
-unicodedata
+# unicodedata
 re
 platform
-subprocess
-psutil
+# subprocess
+# psutil
 colorama
 requests
