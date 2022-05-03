@@ -33,7 +33,7 @@ jobs:
       - name: Install python requirements
         run: |
           cd $GITHUB_WORKSPACE
-          ls -la
+          pip install -r requirements.txt
           
       
       # - name: mvn spotbugs
