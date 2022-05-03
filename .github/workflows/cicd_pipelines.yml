@@ -39,10 +39,12 @@ jobs:
           
       
       - name: mvn spotbugs
+        
         run: |
           cd $GITHUB_WORKSPACE
-          cd spring-boot-hello-world2/scripts
-          python3 01-spotbugs.py
+          cd spring-boot-hello-world2 
+          result=$(mvn spotbugs:check -Ddetail=true)
+          print (result)
 
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
