@@ -49,9 +49,12 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> nicoculpable.txt
-          #python3 scripts/01-string-spotbugs.py $result
+          mvn spotbugs:check -Ddetail=true 2>/dev/null 1> nico.txt
+          cat nico.txt | grep "Error" 1> nicoculpable.txt 
           ls -la .
+          sleep (5)
+          cat nicoculpable.txt
+          sleep (15)
           python3 scripts/nicoculpa.py
           
           
