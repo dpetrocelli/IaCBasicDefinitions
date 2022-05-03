@@ -33,7 +33,7 @@ jobs:
       - name: Install python requirements
         run: |
           cd $GITHUB_WORKSPACE
-          pip3 install -rv requirements.txt
+          pip3 install -r -v requirements.txt
           
 # pip install --verbose --requirement requirements.txt
           
