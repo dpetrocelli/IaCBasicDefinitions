@@ -11,19 +11,28 @@ name: cicd_pipeline
 
 jobs:
 
-  # build_front:
-  #   name: Build FrontEnd and publish to Docker Registry
-  #   runs-on: ubuntu-latest
+  build_front:
+    name: Build Backend APP and publish to Docker Registry
+    runs-on: ubuntu-latest
 
-  #   steps:
+    steps:
 
-  #     # [STEP 1] - Checkout Code
-  #     - name: Checkout code from repo
-  #       uses: actions/checkout@v2
+      # [STEP 1] - Checkout Code
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+          architecture: 'x64' 
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' 
+          java-version: '11'
+          cache: maven
+      - name: Checkout code from repo
+        uses: actions/checkout@v2
       
-  #     # [STEP 2] - Check filesystem structure and get it the correct path
-  #     - name: Check filesystem structure
-  #       run: ls -la
+      # [STEP 2] - Check filesystem structure and get it the correct path
+      - name: Check filesystem structure
+        run: ls -la
         
 
   #     # [STEP 2] - Build & Store Docker image
