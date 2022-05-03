@@ -49,7 +49,7 @@ class ScriptBuilder:
               
     def printer (self, startPattern, eval, result):
         if (result.startswith("{}".format(startPattern))):
-            print (Fore.BLUE +"Evaluating: \"{}\" // {} {} Found ".format(eval, result, eval))
+            print (Fore.BLUE +"Evaluating: \"{}\" // result: {} ".format(eval, result))
             
         else:
             print ("ERRORASO")
