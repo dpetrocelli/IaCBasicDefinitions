@@ -16,8 +16,14 @@ class ScriptBuilder:
         pass 
     
     def runner (self, args):
-            proc = subprocess.run(args,shell=True,capture_output=True)
+            proc = subprocess.run(args,shell=False,capture_output=True)
             return [proc.returncode, proc.stdout.decode("utf-8"), proc.stderr.decode("utf-8")]
+    
+    # def runner (self, args):
+    #     process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    #     output, error = process.communicate()
+        
+    #     return [process.returncode, process.stdout, process.stderr]
     
     def grep (self, string, grepCmd, multiline):
         grepResult = []
