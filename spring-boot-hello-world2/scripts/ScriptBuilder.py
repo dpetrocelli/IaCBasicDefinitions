@@ -16,7 +16,7 @@ class ScriptBuilder:
         pass 
     
     def runner (self, args):
-            proc = subprocess.run(args,shell=False,capture_output=True)
+            proc = subprocess.run(args,shell=True,capture_output=True)
             return [proc.returncode, proc.stdout.decode("utf-8"), proc.stderr.decode("utf-8")]
     
     # def runner (self, args):

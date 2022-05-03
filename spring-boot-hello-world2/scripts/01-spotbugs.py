@@ -21,7 +21,11 @@ command = "spotbugs:check -Ddetail=true"
 spotbugs = "{} -f {}/../pom.xml {}".format(binary,directory,command) 
 #spotbugs = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 print (spotbugs)
-sbResult=sb.runner(["/usr/bin/mvn", "-f", "{}/../pom.xml".format(directory), "spotbugs:check", "-Ddetail=true"])
+
+# FOR TRUE CAPTURE
+sbResult=sb.runner(spotbugs)
+# FOR FALSE CAPTURE
+# sbResult=sb.runner(["/usr/bin/mvn", "-f", "{}/../pom.xml".format(directory), "spotbugs:check", "-Ddetail=true"])
 
 
 # # Result -> 0 -> exit status
