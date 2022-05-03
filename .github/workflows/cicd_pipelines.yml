@@ -41,6 +41,8 @@ jobs:
       - id: get_bash
         name: mvn spotbugs (bash content)
         shell: bash
+        env:
+          result: -1
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
@@ -48,13 +50,8 @@ jobs:
           echo "-------- HAPPIINIT -----------"
           echo "::set-output name=my_value::$result"
           echo "-------- HAPPIEND -----------"
-      - name: mvn spotbgugs analyzer
-        shell: bash
-        run: |
-            cd $GITHUB_WORKSPACE
-            cd spring-boot-hello-world2 
-            cd scripts/
-            python3 01-string-spotbugs.py ${{ steps.get_bash.outputs.my_value }}
+          python3 scripts/01-string-spotbugs.py $result 
+      
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
   #       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
