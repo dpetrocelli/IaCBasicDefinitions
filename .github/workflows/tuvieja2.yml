@@ -45,9 +45,10 @@ jobs:
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
           mvn spotbugs:check -Ddetail=true 2>/dev/null 1> scripts/temp.txt
-          result = $(cat scripts/temp.txt | grep "BugInstance size is")
+          result=$(cat scripts/temp.txt | grep "BugInstance size is")
           ls -l scripts/
-          python3 scripts/01-string-spotbugs.py $result
+          echo $result
+#python3 scripts/01-string-spotbugs.py $result
           
           
       
