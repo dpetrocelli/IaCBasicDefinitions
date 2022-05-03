@@ -33,6 +33,7 @@ jobs:
       - name: Install python requirements
         run: |
           cd $GITHUB_WORKSPACE
+          pip install psutil
           
 # pip install --verbose --requirement requirements.txt
           
