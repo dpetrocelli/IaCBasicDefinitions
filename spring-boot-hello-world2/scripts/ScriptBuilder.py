@@ -6,9 +6,7 @@ import re
 import psutil
 import pwd
 import shutil
-import colorama
 import requests
-from colorama import Fore, Style
 
 # OS Calls from python doc: https://hackernoon.com/calling-shell-commands-from-python-ossystem-vs-subprocess-mc253z4f
 class ScriptBuilder:
@@ -50,7 +48,7 @@ class ScriptBuilder:
               
     def printer (self, startPattern, eval, result):
         if (result.startswith("{}".format(startPattern))):
-            print (Fore.BLUE +"Evaluating: \"{}\" // result: {} ".format(eval, result))
+            print ("Evaluating: \"{}\" // result: {} ".format(eval, result))
             
         else:
             print ("ERRORASO")
