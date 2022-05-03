@@ -33,11 +33,15 @@ jobs:
       - name: Install python requirements
         run: |
           cd $GITHUB_WORKSPACE
-          pip install --verbose --requirement requirements.txt
+          
+# pip install --verbose --requirement requirements.txt
           
       
-      # - name: mvn spotbugs
-      #   run: cd spring-boot-hello-world2; python3 01-spotbugs.py
+      - name: mvn spotbugs
+        run: |
+          cd $GITHUB_WORKSPACE
+          cd spring-boot-hello-world2
+          python3 01-spotbugs.py
 
   #     # [STEP 2] - Build & Store Docker image
   #     - name: Login to Docker Hub
