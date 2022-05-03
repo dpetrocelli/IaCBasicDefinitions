@@ -45,7 +45,7 @@ jobs:
           cd spring-boot-hello-world2 
           result=echo "::set-output name=coverage::$(mvn spotbugs:check -Ddetail=true)"
           echo "-------- HAPPIINIT -----------"
-          echo "::set-output name=status::$result"
+          echo "::set-output name=status::$coverage"
           echo "-------- HAPPIEND -----------"
 
   #     # [STEP 2] - Build & Store Docker image
