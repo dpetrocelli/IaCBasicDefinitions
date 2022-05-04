@@ -9,7 +9,7 @@ from ScriptBuilder import ScriptBuilder
 # mvn compile -Dmaven.test.skip=true sonar:sonar -Dsonar.projectKey=$sonar_project_key -Dsonar.sources="." -Dsonar.host.url=$sonar_host_url -Dsonar.login=$sonar_username -Dsonar.password=$sonar_password -Dsonar.projectVersion=1.0 -Dsonar.sources=src/main -Dsonar.sourceEncoding=UTF-8 -Dsonar.language=java -Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco-ut/jacoco.xml
 
 # HARCODED VARS:
-sonarHost="http://localhost:9090"
+sonarHost="https://sonar-lb-dpetrocelli.cloud.okteto.net"
 projectKey="hello-world"
 sonarUser="admin" 
 sonarPwd="adminadmin"
@@ -19,8 +19,8 @@ directory = os.getcwd()
 binary = shutil.which("mvn")
 sb = ScriptBuilder()
 command = "sonar:sonar -Dsonar.projectKey={} -Dsonar.sources={} -Dsonar.host.url={} -Dsonar.login={} -Dsonar.password={}".format(projectKey, sources, sonarHost, sonarUser, sonarPwd)
-sonarRunner = "cd {} ; cd ..; {} {}".format(directory, binary, command)
-
+sonarRunner = "cd {} ; {} {}".format(directory, binary, command)
+print (sonarRunner)
 try:
     sonar=sb.runner(sonarRunner)
     # get task id 

@@ -6,6 +6,10 @@ import re
 sys.path.append(".")
 from ScriptBuilder import ScriptBuilder
 
+dockerUser= sys.argv[1]
+dockerPwd= sys.argv[2]
+appName= sys.argv[3]
+
 # [STEP 1] - Instantiate the builder class
 sb = ScriptBuilder()
 
@@ -14,40 +18,50 @@ sb = ScriptBuilder()
 # --------------------------------------------------------
 directory = os.getcwd()
 binary = shutil.which("docker")
-command = "build . -t dpetrocelli/prueba"
-dockerBuild = "cd {} ; {} {}".format(directory, binary, command)
-dockerResult=sb.runner(dockerBuild)
 
-#Ask for Failures:
-try:
-    checkr="Successfully built"
-    grep=sb.grep(dockerResult[1].splitlines(),checkr, True)
-    
-    regex = "'{}'.split(' ')[0].strip()".format(grep)
-    result = sb.check_result(regex)
-    
-    sb.printer("Successfully", "build docker image", result)
+try: 
+    command = "build . -t {}/{}".format(dockerUser, appName)
+    dockerBuild = "cd {} ; {} {}".format(directory, binary, command)
+    dockerResult=sb.runner(dockerBuild)
+    print ("IMAGE {}:{} SUCCESFULLY BUILD".format(dockerUser, appName))
 except Exception as err: 
+    print ("Error building image")
     print (err)
-    exit (1)
+    
+# #Ask for Failures:
+# try:
+#     checkr="Successfully built"
+#     grep=sb.grep(dockerResult[1].splitlines(),checkr, True)
+    
+#     regex = "'{}'.split(' ')[0].strip()".format(grep)
+#     result = sb.check_result(regex)
+    
+#     sb.printer("Successfully", "build docker image", result)
+# except Exception as err: 
+#     print (err)
+#     exit (1)
 
 # Docker login in line 
-command = "login --user dpetrocelli --password Osito1104** ; docker push dpetrocelli/prueba:latest"
-dockerPush = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
-pushResult=sb.runner(dockerPush)
-
-#Ask for Failures:
-try:
-    checkr="digest: "
-    grep=sb.grep(pushResult[1].splitlines(),checkr, True)
-    
-    regex = "'{}'.split(':')[3].strip()".format(grep)
-    result = sb.check_result(regex)
-    print (result)
-    #sb.printer("Successfully", "build docker image", result)
+try: 
+    command = "login --user {} --password {} ; docker push {}/{}:latest".format(dockerUser, dockerPwd, dockerUser, appName)
+    dockerPush = "cd {} ; {} {}".format(directory, binary, command)
+    pushResult=sb.runner(dockerPush)
+    print ("IMAGE {}:{} SUCCESFULLY PUSHED".format(dockerUser, appName))
 except Exception as err: 
+    print ("Error pusshing image")
     print (err)
-    exit (1)
+# #Ask for Failures:
+# try:
+#     checkr="digest: "
+#     grep=sb.grep(pushResult[1].splitlines(),checkr, True)
+    
+#     regex = "'{}'.split(':')[3].strip()".format(grep)
+#     result = sb.check_result(regex)
+#     print (result)
+#     #sb.printer("Successfully", "build docker image", result)
+# except Exception as err: 
+#     print (err)
+#     exit (1)
 
 
 

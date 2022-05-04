@@ -41,39 +41,39 @@ jobs:
 # pip install --verbose --requirement requirements.txt
           
       
-      - id: mvn_spotbugs
-        name: mvn spotbugs (bash content)
+      - id: mvn_test
+        name: mvn test 
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          
-          # mvn test > nicoculpable.txt
-          # ls -la .
-          # cat nicoculpable.txt
           python3 scripts/02-mvntest.py
   
           
-          
-          
-          
+      - id: mvn_build
+        name: mvn build 
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          cd spring-boot-hello-world2 
+          python3 scripts/04-mvnbuild.py
       
-  #     # [STEP 2] - Build & Store Docker image
-  #     - name: Login to Docker Hub
-  #       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+     
+      - id: docker build
+        name: docker login and build
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          cd spring-boot-hello-world2 
+          appName = $(cat pom.xml | grep name | cut -d ">" -f 2 | cut -d "<" -f1)
+          python3 scripts/05-dockerbuild.py ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }} $appName
         
-  #     - name: Build Frontend Container image
-  #       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.FRONT_REPO }}:latest ./frontend-client
-        
-  #     - name: Publish Docker image
-  #       run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.FRONT_REPO }}:latest
-
-
-  #     - uses: actions-hub/kubectl@master
-  #       env:
-  #         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
-  #       with:
-  #         args: apply -f k8s/okteto_k8s_github_actions/yamls/deployment.yaml
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: apply -f k8s/okteto_k8s_github_actions/yamls/demo/
+          
   
   # build_back:
   #   name: Build Backend and publish to Docker Registry

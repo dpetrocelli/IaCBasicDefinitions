@@ -1,0 +1,32 @@
+# EFS example: https://medium.com/@akamenev/running-sonarqube-on-azure-kubernetes-92a1b9051120
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sonarqube
+  name: sonarqube
+spec:
+  replicas: 1
+  selector:
+   matchLabels:
+    app: sonarqube
+  template:
+    metadata:
+      labels:
+        app: sonarqube
+    spec:
+      containers:
+        - name: sonarqube
+          image: sonarqube:8.9.1-community
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1024Mi
+            limits:
+              cpu: 1000m
+              memory: 2048Mi
+          
+          ports:
+          - containerPort: 9000
+            protocol: TCP
+      
