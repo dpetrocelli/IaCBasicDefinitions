@@ -21,7 +21,6 @@ mvnTest = "cd {} ; {} {}".format(directory, binary, command)
 testResult=sb.runner(mvnTest)
 
 
-Ask for Failures:
 try:
     checkr="Failures:"
     grep=sb.grep(testResult[1].splitlines(),checkr, True)
