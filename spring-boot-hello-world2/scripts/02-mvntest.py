@@ -24,11 +24,11 @@ testResult=sb.runner(mvnTest)
 try:
     checkr="Failures:"
     grep=sb.grep(testResult[1].splitlines(),checkr, True)
-    print ("ELGRE: {}".format(grep))
-    # regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
-    # result = sb.check_result(regex)
+   
+    regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
+    result = sb.check_result(regex)
 
-    # sb.printer("0", checkr, result)
+    sb.printer("0", checkr, result)
 except Exception as err: 
     print (err)
     exit (1)
