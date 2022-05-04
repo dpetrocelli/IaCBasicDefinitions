@@ -22,44 +22,45 @@ testResult=sb.runner(mvnTest)
 try:
     checkr="Failures:"
     grep=sb.grep(testResult[1].splitlines(),checkr, True)
-    regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
-    result = sb.check_result(regex)
+    print ("ELGRE: {}".format(grep))
+    # regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
+    # result = sb.check_result(regex)
 
-    sb.printer("0", checkr, result)
+    # sb.printer("0", checkr, result)
 except Exception as err: 
     print (err)
     exit (1)
 
 
-#Ask for Errors:
+# #Ask for Errors:
 
-try:
-    checkr="Errors:"
-    grep=sb.grep(testResult[1].splitlines(),checkr, True)
-    regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
+# try:
+#     checkr="Errors:"
+#     grep=sb.grep(testResult[1].splitlines(),checkr, True)
+#     regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
     
-    result = sb.check_result(regex)
-    sb.printer("0", checkr, result)
-except Exception as err: 
-    print (err)
-    exit (1)
+#     result = sb.check_result(regex)
+#     sb.printer("0", checkr, result)
+# except Exception as err: 
+#     print (err)
+#     exit (1)
     
     
-# # Ask for Skipped:
+# # # Ask for Skipped:
 
-try:
-    checkr="Skipped:"
-    grep=sb.grep(testResult[1].splitlines(),checkr, True)
+# try:
+#     checkr="Skipped:"
+#     grep=sb.grep(testResult[1].splitlines(),checkr, True)
     
-    regex = "('{}'.split('{}')[1].strip())".format(grep, checkr)
+#     regex = "('{}'.split('{}')[1].strip())".format(grep, checkr)
     
-    result = sb.check_result(regex)
-    sb.printer("0", checkr, result)
-    # ansi_escape = re.compile(r'\x1bm')
+#     result = sb.check_result(regex)
+#     sb.printer("0", checkr, result)
+#     # ansi_escape = re.compile(r'\x1bm')
     
-    # ansi_escape.sub('', result)
-    # print (int(result))
-    #sb.printer(result, checkr, result)
-except Exception as err: 
-    print (err)
-    exit (1)
+#     # ansi_escape.sub('', result)
+#     # print (int(result))
+#     #sb.printer(result, checkr, result)
+# except Exception as err: 
+#     print (err)
+#     exit (1)
