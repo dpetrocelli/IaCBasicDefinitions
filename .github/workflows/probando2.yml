@@ -55,7 +55,7 @@ jobs:
           
           cat nicoculpable.txt
           
-          python3 scripts/nicoculpa.py
+          # python3 scripts/nicoculpa.py
           
           
       

@@ -16,5 +16,7 @@ spec:
       containers:
       - name: webserver
         image: dpetrocelli/webserver_prueba:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+  

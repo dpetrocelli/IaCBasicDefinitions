@@ -18,7 +18,7 @@ directory = os.getcwd()
 
 binary = shutil.which("mvn")
 command = "spotbugs:check -Ddetail=true"
-spotbugs = "{} -f {}/../pom.xml {}".format(binary,directory,command) 
+spotbugs = "{} -f {}/pom.xml {}".format(binary,directory,command) 
 #spotbugs = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 print (spotbugs)
 
