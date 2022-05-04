@@ -32,11 +32,11 @@ jobs:
         name: Checkout code from repo
         uses: actions/checkout@v3
       
-      # - id: install_python_requirements
-      #   name: Install python requirements
-      #   run: |
-      #     cd $GITHUB_WORKSPACE
-      #     pip3 install -r requirements.txt
+      - id: install_python_requirements
+        name: Install python requirements
+        run: |
+          cd $GITHUB_WORKSPACE
+          pip3 install -r requirements.txt
           
 # pip install --verbose --requirement requirements.txt
           
