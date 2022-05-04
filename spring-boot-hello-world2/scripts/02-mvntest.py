@@ -23,18 +23,19 @@ mvnTest = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
 print ("runneame el command")
 testResult=sb.runner(mvnTest)
 print ("atu")
+print (testResult[1])
 #Ask for Failures:
-try:
+# try:
     checkr="Failures:"
-    grep=sb.grep(testResult[1].splitlines(),checkr, True)
-    print ("ELGRE: {}".format(grep))
-    # regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
-    # result = sb.check_result(regex)
+    # grep=sb.grep(testResult[1].splitlines(),checkr, True)
+    # print ("ELGRE: {}".format(grep))
+    # # regex = "'{}'.split('{}')[1].split(',')[0].strip()".format(grep, checkr)
+    # # result = sb.check_result(regex)
 
-    # sb.printer("0", checkr, result)
-except Exception as err: 
-    print (err)
-    exit (1)
+    # # sb.printer("0", checkr, result)
+# except Exception as err: 
+    # print (err)
+    # exit (1)
 
 
 # #Ask for Errors:
