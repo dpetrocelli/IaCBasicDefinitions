@@ -50,6 +50,7 @@ jobs:
           
           mvn test > nicoculpable.txt
           ls -la .
+          cat nicoculpable.txt
           
   
           
