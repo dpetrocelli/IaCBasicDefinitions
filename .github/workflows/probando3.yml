@@ -59,7 +59,7 @@ jobs:
           python3 scripts/04-mvnbuild.py
       
      
-      - id: docker build
+      - id: docker_build
         name: docker login and build
         shell: bash
         run: |
@@ -68,7 +68,9 @@ jobs:
           appName = $(cat pom.xml | grep name | cut -d ">" -f 2 | cut -d "<" -f1)
           python3 scripts/05-dockerbuild.py ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }} $appName
         
-      - uses: actions-hub/kubectl@master
+      - id: kctl_apply
+        name: Kubectl apply
+        uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
