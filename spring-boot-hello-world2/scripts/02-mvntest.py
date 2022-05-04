@@ -7,17 +7,22 @@ sys.path.append(".")
 from ScriptBuilder import ScriptBuilder
 
 # [STEP 1] - Instantiate the builder class
+print ("builder")
 sb = ScriptBuilder()
 
 # --------------------------------------------------------
 # STAGE 2 - Unit Test Code (MVN TEST SESSION)
 # --------------------------------------------------------
+print ("os")
 directory = os.getcwd()
+print ("shutil")
 binary = shutil.which("mvn")
+print ("commands")
 command = "test"
 mvnTest = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
+print ("runneame el command")
 testResult=sb.runner(mvnTest)
-
+print ("atu")
 #Ask for Failures:
 try:
     checkr="Failures:"
