@@ -46,12 +46,12 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          cd spring-boot-hello-world2 
+          # cd spring-boot-hello-world2 
           
-          mvn test > nicoculpable.txt
-          ls -la .
-          cat nicoculpable.txt
-          
+          # mvn test > nicoculpable.txt
+          # ls -la .
+          # cat nicoculpable.txt
+          python3 scripts/02-mvntest.py
   
           
           
