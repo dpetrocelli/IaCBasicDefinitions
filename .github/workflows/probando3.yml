@@ -49,13 +49,13 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          #mvn spotbugs:check -Ddetail=true 2>/dev/null 1> nicoculpable.txt
+          
           mvn test > nicoculpable.txt
           ls -la .
           
           cat nicoculpable.txt
           
-          # python3 scripts/nicoculpa.py
+          
           
           
       
