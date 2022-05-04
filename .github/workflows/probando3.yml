@@ -9,8 +9,6 @@ on:
 
 name: cicd_pipeline
 
-env:
-  COMANDENV: $(cat scripts/temp.txt | grep "BugInstance size is")
 
 jobs:
 
@@ -53,7 +51,7 @@ jobs:
           mvn test > nicoculpable.txt
           ls -la .
           
-          cat nicoculpable.txt
+  
           
           
           
