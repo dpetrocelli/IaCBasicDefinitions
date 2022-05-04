@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          # cd spring-boot-hello-world2 
+          cd spring-boot-hello-world2 
           
           # mvn test > nicoculpable.txt
           # ls -la .
