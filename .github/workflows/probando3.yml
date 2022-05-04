@@ -65,7 +65,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           cd spring-boot-hello-world2 
-          appName = $(cat pom.xml | grep name | cut -d ">" -f 2 | cut -d "<" -f1)
+          appName=$(cat pom.xml | grep name | cut -d ">" -f 2 | cut -d "<" -f1)
           python3 scripts/05-dockerbuild.py ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }} $appName
         
       - id: kctl_apply
