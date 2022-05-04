@@ -19,7 +19,7 @@ print ("shutil")
 binary = shutil.which("mvn")
 print ("commands")
 command = "test"
-mvnTest = "cd {} ; cd .. ; {} {}".format(directory, binary, command)
+mvnTest = "cd {} ; {} {}".format(directory, binary, command)
 print ("runneame el command")
 testResult=sb.runner(mvnTest)
 print ("atu")
